@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
-import ChatBox from './ChatBox';
-import {usernameList} from './data';
+import App from './App';
 
-ReactDOM.render(<ChatBox user='larry' usernameList={usernameList}/>, document.getElementById('root'))
+ReactDOM.render(<App/>, document.getElementById('root'))
