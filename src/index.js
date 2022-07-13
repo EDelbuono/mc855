@@ -1,9 +1,9 @@
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Home from './Home';
-// import CustomChatBot from './ChatBotScreen'
+import CustomChatBot from './ChatBotScreen'
+import Dashboard from './admin/Dashboard'
   
 ReactDOM.render(
-    <Home />, document.getElementById('root')
+    <Dashboard />, document.getElementById('root')
 );

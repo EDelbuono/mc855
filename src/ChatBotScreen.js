@@ -17,7 +17,7 @@ const props = {
 };
 
 const bubbleStyle = {
-    maxWidth: '67%',
+    maxWidth: '70%',
     fontSize: '15px',
 };
 
@@ -36,7 +36,7 @@ const CustomChatBot = () => (
   <ThemeProvider theme={props}>
     <CssBaseline />
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
     </style>
     <ChatBot 
     hideUserAvatar
