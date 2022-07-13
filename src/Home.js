@@ -1,54 +1,43 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { ReactComponent as Logo } from './img/LocalizaHC.svg';
-import { ThemeProvider } from 'styled-components';
+import CssBaseline from '@mui/material/CssBaseline';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 
-const props = {
-  background: '#F0FAFF',
-  fontFamily: 'Roboto',
-  headerBgColor: '#0093DD',
-  headerFontColor: '#FFFFFF',
-  headerFontSize: '20px',
-  botBubbleColor: '#ADEBD3',
-  botFontColor: '#222222',
-  userBubbleColor: '#FFFFFF',
-  userFontColor: '#222222',
-};
-
-
-const Button = styled.button`
-background: #FF6638;
+const StartButton = styled.button`
+background-color: #FF6638;
 border-radius: 100px;
+border: 1px solid;
 color: #FFFFFF;
-padding: '12px 24px';
-${props => props.fontSize ? css`
-        font-size: props.fontSize;             
-`: ''}
+padding: 12px 90px;
+font-size: 16px;
+font-family: Roboto;
 `
 
-function Home() {
-    return (
-      <ThemeProvider theme={props}>
-        <style>
-          @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
-        </style>
-          <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
-            {/* Logo is an actual React component */}
-            <Logo /> 
-            <br></br>
-          </div>
-          <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
-            <h2>LocalizaHC</h2>
-          </div>
-          <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
-            <p>
-              <Button onClick={() =>  console.log('tenteeeei')}>
+const theme = createTheme();
+
+const Home = () => (
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Box sx={{
+            backgroundColor: '#F0FAFF',
+          }}>
+          <Container sx={{
+            pt: 25,
+          }} style={{display: 'flex',  justifyContent:'center'}}>
+            <Logo/> 
+          </Container>
+          <Container sx={{
+            pt: 6,
+          }} style={{display: 'flex',  justifyContent:'center',}}>
+              <StartButton onclick>
                 Iniciar Conversa
-              </Button>
-            </p>
-          </div>
+              </StartButton>
+          </Container>
+          </Box>
       </ThemeProvider>
-  )
-}
+)
 
 export default Home

@@ -209,7 +209,7 @@ export const steps=[
     },
     {
         id: '13.1.1.1',
-        message: 'Você já está na filha e sua senha é <XX>. Sua senha e a sala onde acontecerá sua consulta aparecerão na Tela da TV acima da porta do ambulatório quando chegar sua vez.',
+        message: 'Você já está na fila e sua senha é <XX>. Sua senha e a sala onde acontecerá sua consulta aparecerão na Tela da TV acima da porta do ambulatório quando chegar sua vez.',
         trigger: '14.1.1.1',
     },
     {

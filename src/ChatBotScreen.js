@@ -2,6 +2,7 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import ChatBot from 'react-simple-chatbot';
 import { steps } from './ChatFlow';
+import CssBaseline from '@mui/material/CssBaseline';
 
 const props = {
     background: '#F0FAFF',
@@ -26,15 +27,14 @@ const bubbleOptionStyle = {
     background: '#F0FAFF',
     color: '#0093DD',
     border: '1px solid #0093DD',
-    display: 'flex',
-    flexDirection: 'column',
     justifyContent: 'center',
-    padding: '12px 24px',
-    gap: '10px',
+    display: 'block',
+    padding: '10px',
 }
 
 const CustomChatBot = () => (
   <ThemeProvider theme={props}>
+    <CssBaseline />
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
     </style>
