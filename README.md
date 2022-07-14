@@ -1,4 +1,4 @@
-#About
+# About
 
 LocalizaHC was a React project created for the MC855 discipline in the first semester of 2022. The members of the group are André Luis Romão Gouvêa, Enrico Delbuono, Felipe Tiago Martins Arruda and Lucas Roberto de Souza.
 
@@ -6,12 +6,12 @@ The objective of the project was to create a solution for a problem that happens
 
 To solve this problem, we created a Progressive Web App that aims to perform like a chatbot and guide the patient through their journey in the clinic, letting them know where they need to be when they need to be and informing the staff of the hospital which patients are in the waiting queue ready to be called.
 
-#Prototype
+# Prototype
 
 Before developing the project, we created a high fidelity prototype, which can be accessed on Figma:
 
-- [https://www.figma.com/proto/nIr7WsXmbuH6PLFQqzIiQf/LocalizaHC?page-id=0%3A1&node-id=7%3A488&viewport=27%2C212%2C0.06&scaling=scale-down&starting-point-node-id=7%3A488](Figma protoype for the patient side)
-- [https://www.figma.com/proto/nIr7WsXmbuH6PLFQqzIiQf/LocalizaHC?page-id=95%3A1989&node-id=97%3A2867&viewport=779%2C395%2C0.18&scaling=min-zoom&starting-point-node-id=95%3A1991](Figma prototype for the staff side)
+- [https://www.figma.com/proto/nIr7WsXmbuH6PLFQqzIiQf/LocalizaHC?page-id=0%3A1&node-id=7%3A488&viewport=27%2C212%2C0.06&scaling=scale-down&starting-point-node-id=7%3A488] (Figma protoype for the patient side)
+- [https://www.figma.com/proto/nIr7WsXmbuH6PLFQqzIiQf/LocalizaHC?page-id=95%3A1989&node-id=97%3A2867&viewport=779%2C395%2C0.18&scaling=min-zoom&starting-point-node-id=95%3A1991] (Figma prototype for the staff side)
 
 # Getting Started with Create React App
 
