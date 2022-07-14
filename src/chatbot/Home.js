@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { ReactComponent as Logo } from '../img/LocalizaHC.svg';
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
+import { useNavigate } from 'react-router-dom';
 
 const StartButton = styled.button`
 background-color: #FF6638;
@@ -18,12 +19,19 @@ font-family: Roboto;
 
 const theme = createTheme();
 
-const Home = () => (
+const Home = () => {
+  const ChatbotButton = () => {
+    let navigate = useNavigate();
+    navigate('localizahc')
+  }
+
+  return (
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Box sx={{
             backgroundColor: '#F0FAFF',
-          }}>
+          }}
+          style={{height: '100vh',}}>
           <Container sx={{
             pt: 25,
           }} style={{display: 'flex',  justifyContent:'center'}}>
@@ -32,12 +40,14 @@ const Home = () => (
           <Container sx={{
             pt: 6,
           }} style={{display: 'flex',  justifyContent:'center',}}>
-              <StartButton onclick>
+              <StartButton 
+              onClick={ChatbotButton()}>
                 Iniciar Conversa
               </StartButton>
           </Container>
           </Box>
       </ThemeProvider>
 )
+}
 
 export default Home

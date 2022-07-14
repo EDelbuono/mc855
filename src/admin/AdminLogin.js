@@ -80,13 +80,6 @@ export default function AdminLogin() {
             >
               Entrar
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Esqueceu a senha?
-                </Link>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
     </ThemeProvider>

@@ -6,7 +6,8 @@ import CustomChatBot from './chatbot/ChatBotScreen'
 import Dashboard from './admin/Dashboard'
 import AdminLogin from './admin/AdminLogin'
 import Queue from './chatbot/Queue';
+import App from './App'
   
 ReactDOM.render(
-    <Queue />, document.getElementById('root')
+    <App />, document.getElementById('root')
 );
