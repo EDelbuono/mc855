@@ -13,6 +13,15 @@ Before developing the project, we created a high fidelity prototype, which can b
 - [Figma protoype for the patient side](https://www.figma.com/proto/nIr7WsXmbuH6PLFQqzIiQf/LocalizaHC?page-id=0%3A1&node-id=7%3A488&viewport=27%2C212%2C0.06&scaling=scale-down&starting-point-node-id=7%3A488)
 - [Figma prototype for the staff side](https://www.figma.com/proto/nIr7WsXmbuH6PLFQqzIiQf/LocalizaHC?page-id=95%3A1989&node-id=97%3A2867&viewport=779%2C395%2C0.18&scaling=min-zoom&starting-point-node-id=95%3A1991)
 
+# Libs used
+
+To develop this project, these libs were used:
+
+- [Material UI](https://mui.com/pt/)
+- [React Simple Chatbot](https://lucasbassetti.com.br/react-simple-chatbot/)
+- [Styled Components](https://styled-components.com/)
+- [React](https://pt-br.reactjs.org/)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
