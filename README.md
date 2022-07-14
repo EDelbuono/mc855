@@ -10,8 +10,8 @@ To solve this problem, we created a Progressive Web App that aims to perform lik
 
 Before developing the project, we created a high fidelity prototype, which can be accessed on Figma:
 
-- [https://www.figma.com/proto/nIr7WsXmbuH6PLFQqzIiQf/LocalizaHC?page-id=0%3A1&node-id=7%3A488&viewport=27%2C212%2C0.06&scaling=scale-down&starting-point-node-id=7%3A488] (Figma protoype for the patient side)
-- [https://www.figma.com/proto/nIr7WsXmbuH6PLFQqzIiQf/LocalizaHC?page-id=95%3A1989&node-id=97%3A2867&viewport=779%2C395%2C0.18&scaling=min-zoom&starting-point-node-id=95%3A1991] (Figma prototype for the staff side)
+- [Figma protoype for the patient side](https://www.figma.com/proto/nIr7WsXmbuH6PLFQqzIiQf/LocalizaHC?page-id=0%3A1&node-id=7%3A488&viewport=27%2C212%2C0.06&scaling=scale-down&starting-point-node-id=7%3A488)
+- [Figma prototype for the staff side](https://www.figma.com/proto/nIr7WsXmbuH6PLFQqzIiQf/LocalizaHC?page-id=95%3A1989&node-id=97%3A2867&viewport=779%2C395%2C0.18&scaling=min-zoom&starting-point-node-id=95%3A1991)
 
 # Getting Started with Create React App
 
