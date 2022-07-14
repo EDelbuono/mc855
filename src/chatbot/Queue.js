@@ -29,7 +29,7 @@ const Queue = () => (
             backgroundColor: '#F0FAFF',
           }}>
           <Container sx={{
-            pt: 25,
+            pt: 10,
           }} style={{display: 'flex',  justifyContent:'center'}}>
             <h2>Você está na fila de espera. Sua senha é: </h2> 
           </Container>
@@ -46,7 +46,7 @@ const Queue = () => (
           <Container sx={{
             pt: 6,
           }} style={{display: 'flex',  justifyContent:'center',}} height={100}>
-              <StartButton onclick>
+              <StartButton onClick={()=>{window.location.href='/'}}>
                 Sair da fila e voltar para o início
               </StartButton>
           </Container>

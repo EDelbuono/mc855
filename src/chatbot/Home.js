@@ -6,6 +6,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import { useNavigate } from 'react-router-dom';
+import { Link } from '@mui/material';
 
 const StartButton = styled.button`
 background-color: #FF6638;
@@ -20,12 +21,7 @@ font-family: Roboto;
 const theme = createTheme();
 
 const Home = () => {
-  const ChatbotButton = () => {
-    let navigate = useNavigate();
-    navigate('localizahc')
-  }
-
-  return (
+    return(
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Box sx={{
@@ -40,14 +36,21 @@ const Home = () => {
           <Container sx={{
             pt: 6,
           }} style={{display: 'flex',  justifyContent:'center',}}>
-              <StartButton 
-              onClick={ChatbotButton()}>
+              <StartButton onClick={()=>{window.location.href='/localizahc'}}>
                 Iniciar Conversa
               </StartButton>
           </Container>
           </Box>
       </ThemeProvider>
-)
+    )
 }
+
+// function ChatbotButton(){
+
+//   let navigate = useNavigate();
+//   navigate('localizahc')
+//   console.log('feito')
+//   return
+// }
 
 export default Home
