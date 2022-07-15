@@ -30,7 +30,7 @@ export class Review extends Component {
       }
       else if(typeof nome!== "undefined" && typeof numero_hc_2 !== "undefined"){
         addSenhas(nome.value, numero_hc_2.value);
-        return <div>Nome: {nome.value}^, HC: {numero_hc_2.value}</div>;
+        return <div>Nome: {nome.value}, HC: {numero_hc_2.value}</div>;
       }
       else
         return <div>Opções:</div>;
@@ -220,7 +220,7 @@ export const steps=[
             } else if(day===3){
                 if(hour<11 && hour>23)
                     return '10.1.1.1-qua-man'
-                else if(hour<23)
+                else if(hour<23 )
                     return '10.1.1.1-qua-tar'
                 else return '10.1.1.1-qui-man'
             } else if(day===4){
@@ -392,7 +392,7 @@ export const steps=[
             { value: 1, label: 'Medicina do Adolescente', trigger: '11.1.1.1'},
             { value: 2, label: 'Cardiologia Ped', trigger: '11.1.1.1'},
             { value: 3, label: 'Endocrinologia Ped', trigger: '11.1.1.1'},
-            { value: 4, label: 'Gastroent erologia Ped', trigger: '11.1.1.1'},
+            { value: 4, label: 'Gastroenterologia Ped', trigger: '11.1.1.1'},
             { value: 5, label: 'Triagem Mucoviscidose', trigger: '11.1.1.1'},
             { value: 6, label: 'Outro', trigger: '11.1.1.2'},
             { value: 7, label: 'Respondi errado. Voltar para a tela anterior.', trigger: '11.1.1.3'},
