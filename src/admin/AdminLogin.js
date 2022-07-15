@@ -77,7 +77,7 @@ export default function AdminLogin() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={()=>{window.location.href='/dashboard'}}
+              onClick={()=>{window.location.href='/dashboard-fila-espera'}}
             >
               Entrar
             </Button>

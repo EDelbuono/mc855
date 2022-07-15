@@ -49,7 +49,8 @@ const rows = [
   ),
 ];
 
-export default function PatientsCard() {
+// Card "Pessoas sendo Atendidas" da seção "Fila de Espera"
+export function Atendidas_FilaEspera() {
   return (
     <React.Fragment>
         <style>
@@ -88,6 +89,269 @@ export default function PatientsCard() {
               <TableCell>{row.nome}</TableCell>
               <TableCell>{row.hc}</TableCell>
               <TableCell>{row.especialidade}</TableCell>
+              <TableCell>{}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </React.Fragment>
+  );
+}
+
+// Card "Pessoas na Fila" da seção "Fila de Espera"
+export function Fila_FilaEspera() {
+  return (
+    <React.Fragment>
+        <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
+        </style>
+      <Title>Pessoas na fila</Title>
+      <Table size="medium">
+        <TableHead>
+          <TableRow>
+            <TableCell sx={{
+            color: '#999999',
+            }}
+            >Senha</TableCell>
+            <TableCell sx={{
+            color: '#999999',
+            }}
+            >Nome</TableCell>
+            <TableCell sx={{
+            color: '#999999',
+            }}
+            >HC</TableCell>
+            <TableCell sx={{
+            color: '#999999',
+            }}
+            >Especialidade</TableCell>
+            <TableCell sx={{
+            color: '#999999',
+            }}
+            >Ação</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow key={row.id}>
+              <TableCell>{row.senha}</TableCell>
+              <TableCell>{row.nome}</TableCell>
+              <TableCell>{row.hc}</TableCell>
+              <TableCell>{row.especialidade}</TableCell>
+              <TableCell>{}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </React.Fragment>
+  );
+}
+
+// Card "Pessoas sendo Atendidas" da seção "Fila sem Senha"
+export function Atendidas_FilaSemSenha() {
+  return (
+    <React.Fragment>
+        <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
+        </style>
+      <Title>Pessoas sendo atendidas</Title>
+      <Table size="medium">
+        <TableHead>
+          <TableRow>
+            <TableCell sx={{
+            color: '#999999',
+            }}
+            >Nome</TableCell>
+            <TableCell sx={{
+            color: '#999999',
+            }}
+            >HC</TableCell>
+            <TableCell sx={{
+            color: '#999999',
+            }}
+            >Ação</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow key={row.id}>
+              <TableCell>{row.nome}</TableCell>
+              <TableCell>{row.hc}</TableCell>
+              <TableCell>{}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </React.Fragment>
+  );
+}
+
+// Card "Pessoas na Fila" da seção "Fila sem Senha"
+export function Fila_FilaSemSenha() {
+  return (
+    <React.Fragment>
+        <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
+        </style>
+      <Title>Pessoas na fila</Title>
+      <Table size="medium">
+        <TableHead>
+          <TableRow>
+            <TableCell sx={{
+            color: '#999999',
+            }}
+            >Nome</TableCell>
+            <TableCell sx={{
+            color: '#999999',
+            }}
+            >HC</TableCell>
+            <TableCell sx={{
+            color: '#999999',
+            }}
+            >Ação</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow key={row.id}>
+              <TableCell>{row.nome}</TableCell>
+              <TableCell>{row.hc}</TableCell>
+              <TableCell>{}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </React.Fragment>
+  );
+}
+
+// Card "Pessoas sendo Atendidas" da seção "Faixa Amarela"
+export function Atendidas_FaixaAmarela() {
+  return (
+    <React.Fragment>
+        <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
+        </style>
+      <Title>Pessoas sendo atendidas</Title>
+      <Table size="medium">
+        <TableHead>
+          <TableRow>
+            <TableCell sx={{
+            color: '#999999',
+            }}
+            >Nome</TableCell>
+            <TableCell sx={{
+            color: '#999999',
+            }}
+            >Ação</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow key={row.id}>
+              <TableCell>{row.nome}</TableCell>
+              <TableCell>{}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </React.Fragment>
+  );
+}
+
+// Card "Pessoas na Fila" da seção "Faixa Amarela"
+export function Fila_FaixaAmarela() {
+  return (
+    <React.Fragment>
+        <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
+        </style>
+      <Title>Pessoas na fila</Title>
+      <Table size="medium">
+        <TableHead>
+          <TableRow>
+            <TableCell sx={{
+            color: '#999999',
+            }}
+            >Nome</TableCell>
+            <TableCell sx={{
+            color: '#999999',
+            }}
+            >Ação</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow key={row.id}>
+              <TableCell>{row.nome}</TableCell>
+              <TableCell>{}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </React.Fragment>
+  );
+}
+
+// Card "Pessoas sendo Atendidas" da seção "Sala 23"
+export function Atendidas_Sala23() {
+  return (
+    <React.Fragment>
+        <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
+        </style>
+      <Title>Pessoas sendo atendidas</Title>
+      <Table size="medium">
+        <TableHead>
+          <TableRow>
+            <TableCell sx={{
+            color: '#999999',
+            }}
+            >Nome</TableCell>
+            <TableCell sx={{
+            color: '#999999',
+            }}
+            >Ação</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow key={row.id}>
+              <TableCell>{row.nome}</TableCell>
+              <TableCell>{}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </React.Fragment>
+  );
+}
+
+// Card "Pessoas na Fila" da seção "Sala 23"
+export function Fila_Sala23() {
+  return (
+    <React.Fragment>
+        <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
+        </style>
+      <Title>Pessoas na fila</Title>
+      <Table size="medium">
+        <TableHead>
+          <TableRow>
+            <TableCell sx={{
+            color: '#999999',
+            }}
+            >Nome</TableCell>
+            <TableCell sx={{
+            color: '#999999',
+            }}
+            >Ação</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow key={row.id}>
+              <TableCell>{row.nome}</TableCell>
               <TableCell>{}</TableCell>
             </TableRow>
           ))}

@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { ReactComponent as Logo } from '../img/LocalizaHC.svg';
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
-import { useNavigate } from 'react-router-dom';
-import { Link } from '@mui/material';
 
 const StartButton = styled.button`
 background-color: #FF6638;

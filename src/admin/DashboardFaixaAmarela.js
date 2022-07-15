@@ -14,8 +14,8 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { Sidebar } from './Sidebar';
-import PatientsCard from './PatientsCard';
+import { Sidebar_FaixaAmarela } from './Sidebar';
+import { Atendidas_FaixaAmarela, Fila_FaixaAmarela } from './PatientsCard';
 
 const drawerWidth = 240;
 
@@ -119,16 +119,13 @@ function DashboardContent() {
           </Toolbar>
           <Divider />
           <List component="nav">
-            {Sidebar}
+            {Sidebar_FaixaAmarela}
           </List>
         </Drawer>
         <Box
           component="main"
           sx={{
-            backgroundColor: (theme) =>
-              theme.palette.mode === 'light'
-                ? theme.palette.grey[100]
-                : theme.palette.grey[900],
+            backgroundColor: '#F0FAFF',
             flexGrow: 1,
             height: '100vh',
             overflow: 'auto',
@@ -137,10 +134,16 @@ function DashboardContent() {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
-              {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  <PatientsCard />
+                  <Atendidas_FaixaAmarela />
+                </Paper>
+              </Grid>
+            </Grid>
+            <Grid container spacing={3} sx={{pt: 5}}>
+              <Grid item xs={12}>
+                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                  <Fila_FaixaAmarela />
                 </Paper>
               </Grid>
             </Grid>
@@ -151,6 +154,6 @@ function DashboardContent() {
   );
 }
 
-export default function Dashboard() {
+export default function DashboardFaixaAmarela() {
   return <DashboardContent />;
 }
