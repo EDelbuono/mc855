@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-var numero_hc;
+import {addSenhas, tamanho_atual} from './../App.js'
 
 export class Review extends Component {
     constructor(props) {
@@ -9,20 +8,32 @@ export class Review extends Component {
   
       this.state = {
         nome: '',
-        numero_hc: '',
+        numero_hc_1: -1,
+        numero_hc_2: -1,
       };
     }
   
     componentWillMount() {
       const { steps } = this.props;
-      const { nome, numero_hc } = steps;
+      const { nome, numero_hc_1, numero_hc_2, finish } = steps;
   
-      this.setState({ nome });
+      this.setState({ nome, numero_hc_1, numero_hc_2, finish });
     }
   
     render() {
-      const { nome, numero_hc } = this.state;
-      return <div>Opções:</div>;
+      const { nome, numero_hc_1, numero_hc_2, finish } = this.state;
+      if(typeof finish!== "undefined")
+        return <div>Tenha um bom dia!</div>;
+      if(typeof nome!== "undefined" && typeof numero_hc_1 !== "undefined"){
+        addSenhas(nome.value, numero_hc_1.value);
+        return <div>Nome: {nome.value}, HC: {numero_hc_1.value}</div>;
+      }
+      else if(typeof nome!== "undefined" && typeof numero_hc_2 !== "undefined"){
+        addSenhas(nome.value, numero_hc_2.value);
+        return <div>Nome: {nome.value}^, HC: {numero_hc_2.value}</div>;
+      }
+      else
+        return <div>Opções:</div>;
     }
   }
   
@@ -63,15 +74,9 @@ export const steps=[
         message: 'Oi, {previousValue}! É um prazer ter você com a gente! Agora me diz: você já é cliente do HC?',
         trigger: v => {
             //alert(nome);
-            return 'review'
+            return '5'
         },
     },
-    {
-        id: 'review',
-        component: <Review />,
-        asMessage: true,
-        trigger: '5',
-      },
     {
         id: '5',
         options: [
@@ -116,7 +121,7 @@ export const steps=[
     {
         id: '7.1.3',
         message: 'Digite seu HC:',
-        trigger: '8.1.3',
+        trigger: 'numero_hc_1',
     },
     {
         id: '7.1.4',
@@ -145,13 +150,12 @@ export const steps=[
         trigger: '9.1.2',
     },
     {
-        id: '8.1.3',
+        id: 'numero_hc_1', //8.1.3
         user: true,
         trigger: '9.1.3',
         validator: value => {
             let pattern = /^[0-9 ]+$/;
             if(pattern.test(value)){
-                numero_hc = value;
                 return true;
             }
             else
@@ -241,6 +245,12 @@ export const steps=[
         trigger: '10.1.1.2',
     },
     {
+        id: 'review_numero_hc_1',
+        component: <Review />,
+        asMessage: true,
+        trigger: '5',
+      },
+    {
         id: '9.1.1.3',
         message: 'Nesse caso, por favor se dirija à sala 23 a sua direita e aguarde, que em breve te atenderemos.',
         trigger: '10.1.1.3',
@@ -267,25 +277,6 @@ export const steps=[
         message: 'Infelizmente não temos horário de atendimento de fim de semana. Nós trabalhamos de segunda a quinta das 7h - 17h.',
         end: true,
     },
-    // {
-    //     id: '10.1.1.1-opcoes',
-    //     message: 'Selecione qual o período disponível para você:',
-    //     options: opt => {
-    //         disponivel = false;
-    //         return [
-    //         { value: 1, label: 'Segunda-Feira de Manhã', trigger: '10.1.1.1-seg-man'},
-    //         { value: 2, label: 'Segunda-Feira de Tarde', trigger: '10.1.1.1-seg-tar'},
-    //         { value: 3, label: 'Terça-Feira de Manhã', trigger: '10.1.1.1-ter-man'},
-    //         { value: 4, label: 'Terça-Feira de Tarde', trigger: '10.1.1.1-ter-tar'},
-    //         { value: 5, label: 'Quarta-Feira de Manhã', trigger: '10.1.1.1-qua-man'},
-    //         { value: 6, label: 'Quarta-Feira de Tarde', trigger: '10.1.1.1-qua-tar'},
-    //         { value: 7, label: 'Quinta-Feira de Manhã', trigger: '10.1.1.1-qui-man'},
-    //         { value: 8, label: 'Quinta-Feira de Tarde', trigger: '10.1.1.1-qui-tar'},
-    //         { value: 9, label: 'Sexta-Feira de Manhã', trigger: '10.1.1.1-sex-man'},
-    //         { value: 10, label: 'Sexta-Feira de Tarde', trigger: '10.1.1.1-sex-tar'},
-    //         { value: 11, label: 'Respondi errado. Voltar para a tela anterior.', trigger: '11.1.1.3'},
-    //         ]},
-    // },
     {
         id: '10.1.1.1-seg-man',
         options: [
@@ -430,7 +421,7 @@ export const steps=[
     {
         id: '11.1.1.1',
         message: 'Digite seu HC:',
-        trigger: '12.1.1.1',
+        trigger: 'numero_hc_2',
     },
     {
         id: '11.1.1.2',
@@ -479,13 +470,12 @@ export const steps=[
         ],
     },
     {
-        id: '12.1.1.1',
+        id: 'numero_hc_2', // 12.1.1.1
         user: true,
-        trigger: '13.1.1.1',
+        trigger: 'review',
         validator: value => {
             let pattern = /^[0-9 ]+$/;
             if(pattern.test(value)){
-                numero_hc = value;
                 return true;
             }
             else
@@ -500,8 +490,22 @@ export const steps=[
         ],
     },
     {
+        id: 'review',
+        component: <Review />,
+        asMessage: true,
+        trigger: 'finish',
+    },
+    {
+        id: 'finish',
+        component: <Review />,
+        asMessage: true,
+        trigger: '13.1.1.1',
+    },
+    {
         id: '13.1.1.1',
-        message: /* nome + */ ' HC: ' + numero_hc + ', você já está na fila e sua senha é <XX>. Sua senha e a sala onde acontecerá sua consulta aparecerão na Tela da TV acima da porta do ambulatório quando chegar sua vez.',
+        //message: /* nome + */ ' HC: ' + numero_hc + ', você já está na fila e sua senha é <XX>. Sua senha e a sala onde acontecerá sua consulta aparecerão na Tela da TV acima da porta do ambulatório quando chegar sua vez.',
+        message: msg => {            
+            return 'Você já está na fila e sua senha é '+ tamanho_atual +'. Sua senha e a sala onde acontecerá sua consulta aparecerão na Tela da TV acima da porta do ambulatório quando chegar sua vez.'},
         trigger: '14.1.1.1',
     },
     {
