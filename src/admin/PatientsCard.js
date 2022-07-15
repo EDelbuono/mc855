@@ -8,26 +8,26 @@ import Title from './Title';
 import styled from 'styled-components';
 
 export const ConcludeButton = styled.button`
-background-color: #FF6638;
-border-radius: 100px;
+background-color: #33CC91;
+border-radius: 8px;
 border: 1px solid;
 color: #FFFFFF;
-padding-top:12px;
-padding-bottom:12px;
-width: 300px;
-font-size: 16px;
+padding-top: 9px;
+padding-bottom: 9px;
+width: 170px;
+font-size: 14px;
 font-family: Roboto;
 `
 
 export const CallButton = styled.button`
 background-color: #FF6638;
-border-radius: 100px;
+border-radius: 8px;
 border: 1px solid;
 color: #FFFFFF;
-padding-top:12px;
-padding-bottom:12px;
-width: 300px;
-font-size: 16px;
+padding-top: 9px;
+padding-bottom: 9px;
+width: 170px;
+font-size: 14px;
 font-family: Roboto;
 `
 
