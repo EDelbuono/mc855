@@ -171,27 +171,27 @@ export const steps=[
             
             const msg = ' Qual a especialidade do seu atendimento?';
             if(day===1){
-                if(hour<11 && hour>18)
+                if(hour<11 && hour>23)
                     return 'Exibindo especialidades disponíveis de Segunda de Manhã.' + msg;
                 else
                     return 'Exibindo especialidades disponíveis de Segunda de Tarde.' + msg;
             } else if(day===2){
-                if(hour<11 && hour>18)
+                if(hour<11 && hour>23)
                     return 'Exibindo especialidades disponíveis de Terça de Manhã.' + msg;
                 else
                     return 'Exibindo especialidades disponíveis de Terça de Tarde.' + msg;
             } else if(day===3){
-                if(hour<11 && hour>18)
+                if(hour<11 && hour>23)
                     return 'Exibindo especialidades disponíveis de Quarta de Manhã.' + msg;
                 else
                     return 'Exibindo especialidades disponíveis de Quarta de Tarde.' + msg;
             } else if(day===4){
-                if(hour<11 && hour>18)
+                if(hour<11 && hour>23)
                     return 'Exibindo especialidades disponíveis de Quinta de Manhã.' + msg;
                 else
                     return 'Exibindo especialidades disponíveis de Quinta de Tarde.' + msg;
             } else if(day===5){
-                if(hour<11 && hour>18)
+                if(hour<11 && hour>23)
                     return 'Exibindo especialidades disponíveis de Sexta de Manhã.' + msg;
                 else
                     return 'Exibindo especialidades disponíveis de Sexta de Tarde.' + msg;
@@ -207,32 +207,32 @@ export const steps=[
             if(day===1){
                 if(hour<11)
                     return '10.1.1.1-seg-man'
-                else if(hour<18 )
+                else if(hour<23 )
                     return '10.1.1.1-seg-tar'
                 else 
                     return '10.1.1.1-ter-man'
             } else if(day===2){
-                if(hour<11 && hour>18)
+                if(hour<11 && hour>23)
                     return '10.1.1.1-ter-man'
-                else if(hour<18 )
+                else if(hour<23 )
                     return '10.1.1.1-ter-tar'
                 else return '10.1.1.1-qua-man'
             } else if(day===3){
-                if(hour<11 && hour>18)
+                if(hour<11 && hour>23)
                     return '10.1.1.1-qua-man'
-                else if(hour<18 )
+                else if(hour<23)
                     return '10.1.1.1-qua-tar'
                 else return '10.1.1.1-qui-man'
             } else if(day===4){
-                if(hour<11 && hour>18)
+                if(hour<11 && hour>23)
                     return '10.1.1.1-qui-man'
-                else if(hour<18 )
+                else if(hour<23 )
                     return '10.1.1.1-qui-tar'
                 else return '10.1.1.1-sex-man'
             } else if(day===5){
-                if(hour<11 && hour>18)
+                if(hour<11 && hour>23)
                     return '10.1.1.1-sex-man'
-                else if(hour<18 )
+                else if(hour<23 )
                     return '10.1.1.1-sex-tar'
             } 
 

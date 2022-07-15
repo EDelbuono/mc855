@@ -28,7 +28,6 @@ async function getSenhas(db){
 export async function addSenhas(nome_var, numero_hc_var){
   if(nome_var===ultimo_nome)
     return 0;
-  console.log('Abapuru Voador');
   const docRef = doc(db, "senhas", "tamanho_fila_senhas");
   const docSnap = await getDoc(docRef);
 
@@ -37,10 +36,8 @@ export async function addSenhas(nome_var, numero_hc_var){
   while(tamanho_var<0 && vezes<5){
     if (docSnap.exists()) {
       tamanho_var = docSnap.data().tamanho
-      console.log("Document data:", tamanho_var);
     } else {
       // doc.data() will be undefined in this case
-      console.log("No such document!");
     }
     vezes++;
   }

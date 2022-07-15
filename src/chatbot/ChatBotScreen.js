@@ -27,9 +27,14 @@ const bubbleOptionStyle = {
     background: '#F0FAFF',
     color: '#0093DD',
     border: '1px solid #0093DD',
+    display: 'flex',
     justifyContent: 'center',
-    display: 'block',
     padding: '10px',
+    width: '96vw',
+}
+
+const contentStyle = {
+  height: '83vh',
 }
 
 const CustomChatBot = () => (
@@ -45,6 +50,7 @@ const CustomChatBot = () => (
     headerTitle="LocalizaHC"
     bubbleOptionStyle={bubbleOptionStyle}
     bubbleStyle={bubbleStyle}
+    contentStyle={contentStyle}
     />
   </ThemeProvider>
 );

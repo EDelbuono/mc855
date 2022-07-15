@@ -103,10 +103,6 @@ export function Atendidas_FilaEspera() {
             <TableCell sx={{
             color: '#999999',
             }}
-            >Especialidade</TableCell>
-            <TableCell sx={{
-            color: '#999999',
-            }}
             >Ação</TableCell>
           </TableRow>
         </TableHead>
@@ -116,7 +112,6 @@ export function Atendidas_FilaEspera() {
               <TableCell>{row.senha}</TableCell>
               <TableCell>{row.nome}</TableCell>
               <TableCell>{row.hc}</TableCell>
-              <TableCell>{row.especialidade}</TableCell>
               <TableCell>
                 <ConcludeButton>CONCLUIR</ConcludeButton>
                 </TableCell>
@@ -154,10 +149,6 @@ export function Fila_FilaEspera() {
             <TableCell sx={{
             color: '#999999',
             }}
-            >Especialidade</TableCell>
-            <TableCell sx={{
-            color: '#999999',
-            }}
             >Ação</TableCell>
           </TableRow>
         </TableHead>
@@ -167,7 +158,6 @@ export function Fila_FilaEspera() {
               <TableCell>{row.senha}</TableCell>
               <TableCell>{row.nome}</TableCell>
               <TableCell>{row.hc}</TableCell>
-              <TableCell>{row.especialidade}</TableCell>
               <TableCell>
                 <CallButton>CHAMAR</CallButton>
                 </TableCell>
