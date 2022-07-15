@@ -1,5 +1,39 @@
-var nome='nome_teste';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import ChatBot from 'react-simple-chatbot';
+
 var numero_hc;
+
+export class Review extends Component {
+    constructor(props) {
+      super(props);
+  
+      this.state = {
+        nome: '',
+        numero_hc: '',
+      };
+    }
+  
+    componentWillMount() {
+      const { steps } = this.props;
+      const { nome, numero_hc } = steps;
+  
+      this.setState({ nome });
+    }
+  
+    render() {
+      const { nome, numero_hc } = this.state;
+      return <div>Opções:</div>;
+    }
+  }
+  
+  Review.propTypes = {
+    steps: PropTypes.object,
+  };
+  
+  Review.defaultProps = {
+    steps: undefined,
+  };
 
 export const steps=[
     {
@@ -10,17 +44,15 @@ export const steps=[
     {
         id: '2',
         message: 'Primeiro de tudo, me conta: qual o seu nome completo?',
-        trigger: '3',
+        trigger: 'nome',
     },
     {
-        id: '3',
+        id: 'nome',
         user: true,
         trigger: '4',
         validator: value => {
             let pattern = /^[-a-zA-Z'áàâãéèêíïóôõöúçñ ]+$/;
             if(pattern.test(value)){
-                let nome = value;
-                //alert(nome);
                 return true;
             }
             else
@@ -32,9 +64,15 @@ export const steps=[
         message: 'Oi, {previousValue}! É um prazer ter você com a gente! Agora me diz: você já é cliente do HC?',
         trigger: v => {
             //alert(nome);
-            return '5'
+            return 'review'
         },
     },
+    {
+        id: 'review',
+        component: <Review />,
+        asMessage: true,
+        trigger: '5',
+      },
     {
         id: '5',
         options: [
@@ -464,7 +502,7 @@ export const steps=[
     },
     {
         id: '13.1.1.1',
-        message: nome + ' HC: ' + numero_hc + ', você já está na fila e sua senha é <XX>. Sua senha e a sala onde acontecerá sua consulta aparecerão na Tela da TV acima da porta do ambulatório quando chegar sua vez.',
+        message: /* nome + */ ' HC: ' + numero_hc + ', você já está na fila e sua senha é <XX>. Sua senha e a sala onde acontecerá sua consulta aparecerão na Tela da TV acima da porta do ambulatório quando chegar sua vez.',
         trigger: '14.1.1.1',
     },
     {
@@ -490,3 +528,5 @@ export const steps=[
         trigger: '9.1.1.1',
     },
     ]
+
+export default Review;
