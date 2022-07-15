@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ChatBot from 'react-simple-chatbot';
 
 var numero_hc;
 

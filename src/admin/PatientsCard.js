@@ -5,8 +5,33 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Title from './Title';
+import styled from 'styled-components';
 
-// Generate Order Data
+export const ConcludeButton = styled.button`
+background-color: #FF6638;
+border-radius: 100px;
+border: 1px solid;
+color: #FFFFFF;
+padding-top:12px;
+padding-bottom:12px;
+width: 300px;
+font-size: 16px;
+font-family: Roboto;
+`
+
+export const CallButton = styled.button`
+background-color: #FF6638;
+border-radius: 100px;
+border: 1px solid;
+color: #FFFFFF;
+padding-top:12px;
+padding-bottom:12px;
+width: 300px;
+font-size: 16px;
+font-family: Roboto;
+`
+
+// Generate Data
 function createData(id, senha, nome, hc, especialidade) {
   return { id, senha, nome, hc, especialidade};
 }
@@ -89,7 +114,9 @@ export function Atendidas_FilaEspera() {
               <TableCell>{row.nome}</TableCell>
               <TableCell>{row.hc}</TableCell>
               <TableCell>{row.especialidade}</TableCell>
-              <TableCell>{}</TableCell>
+              <TableCell>
+                <ConcludeButton>CONCLUIR</ConcludeButton>
+                </TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -138,7 +165,9 @@ export function Fila_FilaEspera() {
               <TableCell>{row.nome}</TableCell>
               <TableCell>{row.hc}</TableCell>
               <TableCell>{row.especialidade}</TableCell>
-              <TableCell>{}</TableCell>
+              <TableCell>
+                <CallButton>CHAMAR</CallButton>
+                </TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -177,7 +206,9 @@ export function Atendidas_FilaSemSenha() {
             <TableRow key={row.id}>
               <TableCell>{row.nome}</TableCell>
               <TableCell>{row.hc}</TableCell>
-              <TableCell>{}</TableCell>
+              <TableCell>
+              <ConcludeButton>CONCLUIR</ConcludeButton>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -216,7 +247,9 @@ export function Fila_FilaSemSenha() {
             <TableRow key={row.id}>
               <TableCell>{row.nome}</TableCell>
               <TableCell>{row.hc}</TableCell>
-              <TableCell>{}</TableCell>
+              <TableCell>
+              <CallButton>CHAMAR</CallButton>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -250,7 +283,9 @@ export function Atendidas_FaixaAmarela() {
           {rows.map((row) => (
             <TableRow key={row.id}>
               <TableCell>{row.nome}</TableCell>
-              <TableCell>{}</TableCell>
+              <TableCell>
+              <ConcludeButton>CONCLUIR</ConcludeButton>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -284,7 +319,9 @@ export function Fila_FaixaAmarela() {
           {rows.map((row) => (
             <TableRow key={row.id}>
               <TableCell>{row.nome}</TableCell>
-              <TableCell>{}</TableCell>
+              <TableCell>
+              <CallButton>CHAMAR</CallButton>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -318,7 +355,9 @@ export function Atendidas_Sala23() {
           {rows.map((row) => (
             <TableRow key={row.id}>
               <TableCell>{row.nome}</TableCell>
-              <TableCell>{}</TableCell>
+              <TableCell>
+              <ConcludeButton>CONCLUIR</ConcludeButton>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -352,7 +391,9 @@ export function Fila_Sala23() {
           {rows.map((row) => (
             <TableRow key={row.id}>
               <TableCell>{row.nome}</TableCell>
-              <TableCell>{}</TableCell>
+              <TableCell>
+              <CallButton>CHAMAR</CallButton>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
