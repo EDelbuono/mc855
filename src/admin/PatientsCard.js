@@ -1,4 +1,7 @@
 import * as React from 'react';
+import { useEffect, useState } from 'react';
+import { collection, getDocs} from 'firebase/firestore/lite';
+import {db} from './../firebase-config.js';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -219,6 +222,19 @@ export function Atendidas_FilaSemSenha() {
 
 // Card "Pessoas na Fila" da seção "Fila sem Senha"
 export function Fila_FilaSemSenha() {
+  const [senhas, setSenhas] = useState([]);
+
+  const senhasCollectionRef = collection(db, 'senhas');
+  
+  
+  useEffect(() => {
+    const getSenhas = async () => {
+      const senhasSnapshop = await getDocs(senhasCollectionRef);
+      setSenhas(senhasSnapshop.docs.map((doc) => ({...doc.data(), id: doc.id})));
+    };
+    getSenhas();
+  }, []);
+
   return (
     <React.Fragment>
         <style>
@@ -243,15 +259,14 @@ export function Fila_FilaSemSenha() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.nome}</TableCell>
-              <TableCell>{row.hc}</TableCell>
-              <TableCell>
-              <CallButton>CHAMAR</CallButton>
-              </TableCell>
-            </TableRow>
-          ))}
+        {senhas.map((senha) => (
+          <TableRow key={senha.senha}>
+            <TableCell>{senha.senha}</TableCell>
+            <TableCell>{senha.nome}</TableCell>
+            <TableCell>{senha.numero_hc}</TableCell>
+            <TableCell>{}</TableCell>
+          </TableRow>
+        ))}
         </TableBody>
       </Table>
     </React.Fragment>
