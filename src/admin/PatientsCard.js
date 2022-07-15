@@ -125,6 +125,19 @@ export function Atendidas_FilaEspera() {
 
 // Card "Pessoas na Fila" da seção "Fila de Espera"
 export function Fila_FilaEspera() {
+  const [senhas, setSenhas] = useState([]);
+
+  const senhasCollectionRef = collection(db, 'senhas');
+  
+  
+  useEffect(() => {
+    const getSenhas = async () => {
+      const senhasSnapshop = await getDocs(senhasCollectionRef);
+      setSenhas(senhasSnapshop.docs.map((doc) => ({...doc.data(), id: doc.id})));
+    };
+    getSenhas();
+  }, []);
+
   return (
     <React.Fragment>
         <style>
@@ -153,16 +166,14 @@ export function Fila_FilaEspera() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.senha}</TableCell>
-              <TableCell>{row.nome}</TableCell>
-              <TableCell>{row.hc}</TableCell>
-              <TableCell>
-                <CallButton>CHAMAR</CallButton>
-                </TableCell>
-            </TableRow>
-          ))}
+        {senhas.map((senha) => (
+          <TableRow key={senha.senha}>
+            <TableCell>{senha.senha}</TableCell>
+            <TableCell>{senha.nome}</TableCell>
+            <TableCell>{senha.numero_hc}</TableCell>
+            <TableCell><CallButton>CHAMAR</CallButton></TableCell>
+          </TableRow>
+        ))}
         </TableBody>
       </Table>
     </React.Fragment>
@@ -214,8 +225,7 @@ export function Atendidas_FilaSemSenha() {
 export function Fila_FilaSemSenha() {
   const [senhas, setSenhas] = useState([]);
 
-  const senhasCollectionRef = collection(db, 'senhas');
-  
+  const senhasCollectionRef = collection(db, 'sem_senhas');
   
   useEffect(() => {
     const getSenhas = async () => {
@@ -251,10 +261,9 @@ export function Fila_FilaSemSenha() {
         <TableBody>
         {senhas.map((senha) => (
           <TableRow key={senha.senha}>
-            <TableCell>{senha.senha}</TableCell>
             <TableCell>{senha.nome}</TableCell>
             <TableCell>{senha.numero_hc}</TableCell>
-            <TableCell>{}</TableCell>
+            <TableCell><CallButton>CHAMAR</CallButton></TableCell>
           </TableRow>
         ))}
         </TableBody>
