@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { collection, getDocs} from 'firebase/firestore/lite';
 import {db} from './../firebase-config.js';
+import {change_rows, delete_doc} from './../App.js';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -20,6 +21,7 @@ padding-bottom: 9px;
 width: 170px;
 font-size: 14px;
 font-family: Roboto;
+cursor: pointer;
 `
 
 export const CallButton = styled.button`
@@ -32,6 +34,7 @@ padding-bottom: 9px;
 width: 170px;
 font-size: 14px;
 font-family: Roboto;
+cursor: pointer;
 `
 
 // Generate Data
@@ -79,6 +82,18 @@ const rows = [
 
 // Card "Pessoas sendo Atendidas" da seção "Fila de Espera"
 export function Atendidas_FilaEspera() {
+  const [senhas, setSenhas] = useState([]);
+
+  const senhasCollectionRef = collection(db, 'atendidas_filaespera');
+  
+  
+  useEffect(() => {
+    const getSenhas = async () => {
+      const senhasSnapshop = await getDocs(senhasCollectionRef);
+      setSenhas(senhasSnapshop.docs.map((doc) => ({...doc.data(), id: doc.id})));
+    };
+    getSenhas();
+  }, []);
   return (
     <React.Fragment>
         <style>
@@ -107,16 +122,14 @@ export function Atendidas_FilaEspera() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.senha}</TableCell>
-              <TableCell>{row.nome}</TableCell>
-              <TableCell>{row.hc}</TableCell>
-              <TableCell>
-                <ConcludeButton>CONCLUIR</ConcludeButton>
-                </TableCell>
-            </TableRow>
-          ))}
+        {senhas.map((senha) => (
+          <TableRow key={senha.id}>
+            <TableCell>{senha.senha}</TableCell>
+            <TableCell>{senha.nome}</TableCell>
+            <TableCell>{senha.numero_hc}</TableCell>
+            <TableCell><ConcludeButton onClick={()=> {delete_doc('atendidas_filaespera', senha.id)}}>CONCLUIR</ConcludeButton></TableCell>
+          </TableRow>
+        ))}
         </TableBody>
       </Table>
     </React.Fragment>
@@ -167,11 +180,11 @@ export function Fila_FilaEspera() {
         </TableHead>
         <TableBody>
         {senhas.map((senha) => (
-          <TableRow key={senha.senha}>
+          <TableRow key={senha.id}>
             <TableCell>{senha.senha}</TableCell>
             <TableCell>{senha.nome}</TableCell>
             <TableCell>{senha.numero_hc}</TableCell>
-            <TableCell><CallButton>CHAMAR</CallButton></TableCell>
+            <TableCell><CallButton onClick={()=> {change_rows('senhas', senha.id, {senha:senha.senha, nome:senha.nome, numero_hc:senha.numero_hc}, 'atendidas_filaespera')}}>CHAMAR</CallButton></TableCell>
           </TableRow>
         ))}
         </TableBody>
@@ -260,7 +273,7 @@ export function Fila_FilaSemSenha() {
         </TableHead>
         <TableBody>
         {senhas.map((senha) => (
-          <TableRow key={senha.senha}>
+          <TableRow key={senha.id}>
             <TableCell>{senha.nome}</TableCell>
             <TableCell>{senha.numero_hc}</TableCell>
             <TableCell><CallButton>CHAMAR</CallButton></TableCell>

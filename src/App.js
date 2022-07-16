@@ -4,7 +4,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import { collection, getDocs, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore/lite';
+import { collection, getDocs, doc, getDoc, setDoc, updateDoc, deleteDoc } from 'firebase/firestore/lite';
 import {db} from './firebase-config.js';
 import CustomChatBot from "./chatbot/ChatBotScreen";
 import Home from "./chatbot/Home"
@@ -17,6 +17,17 @@ import DashboardSala23 from "./admin/DashboardSala23";
 
 var ultimo_nome = 'giovanni';
 export var tamanho_atual = 0;
+
+export async function delete_doc(col, id){
+  await deleteDoc(doc(db, col, id));
+}
+
+export async function change_rows(old_col, old_id, old_data, new_col){
+  await deleteDoc(doc(db, old_col, old_id));
+
+  await setDoc(doc(db, new_col, old_id), old_data);
+
+}
 
 async function getSenhas(db){
   const senhasCollectionRef = collection(db, 'senhas');
