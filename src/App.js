@@ -36,6 +36,25 @@ async function getSenhas(db){
   console.log(senhasList[0].nome);
 }
 
+export async function addToFila(nome_col, nome_var, numero_hc_var){
+  if(nome_var===ultimo_nome)
+    return 0;
+
+  if(numero_hc_var===''){
+    await setDoc(doc(db, nome_col, nome_var.toLowerCase().replaceAll(' ', '_')+numero_hc_var), {
+      nome: nome_var,
+    });
+  }else{
+  await setDoc(doc(db, nome_col, nome_var.toLowerCase().replaceAll(' ', '_')+numero_hc_var), {
+    numero_hc: numero_hc_var,
+    nome: nome_var,
+  });
+  }
+
+  ultimo_nome = nome_var;
+  return 1;
+}
+
 export async function addSenhas(nome_var, numero_hc_var){
   if(nome_var===ultimo_nome)
     return 0;

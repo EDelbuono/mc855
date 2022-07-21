@@ -127,7 +127,8 @@ export function Atendidas_FilaEspera() {
             <TableCell>{senha.senha}</TableCell>
             <TableCell>{senha.nome}</TableCell>
             <TableCell>{senha.numero_hc}</TableCell>
-            <TableCell><ConcludeButton onClick={()=> {delete_doc('atendidas_filaespera', senha.id)}}>CONCLUIR</ConcludeButton></TableCell>
+            {senha.id!=='0_non_blank' &&
+            <TableCell><ConcludeButton onClick={()=> {delete_doc('atendidas_filaespera', senha.id)}}>CONCLUIR</ConcludeButton></TableCell>}
           </TableRow>
         ))}
         </TableBody>
@@ -184,7 +185,8 @@ export function Fila_FilaEspera() {
             <TableCell>{senha.senha}</TableCell>
             <TableCell>{senha.nome}</TableCell>
             <TableCell>{senha.numero_hc}</TableCell>
-            <TableCell><CallButton onClick={()=> {change_rows('senhas', senha.id, {senha:senha.senha, nome:senha.nome, numero_hc:senha.numero_hc}, 'atendidas_filaespera')}}>CHAMAR</CallButton></TableCell>
+            {senha.id!=='tamanho_fila_senhas' &&
+            <TableCell><CallButton onClick={()=> {change_rows('senhas', senha.id, {senha:senha.senha, nome:senha.nome, numero_hc:senha.numero_hc}, 'atendidas_filaespera')}}>CHAMAR</CallButton></TableCell>}
           </TableRow>
         ))}
         </TableBody>
@@ -195,6 +197,19 @@ export function Fila_FilaEspera() {
 
 // Card "Pessoas sendo Atendidas" da seção "Fila sem Senha"
 export function Atendidas_FilaSemSenha() {
+  const [filas, setFilas] = useState([]);
+
+  const senhasCollectionRef = collection(db, 'atendidas_filasemsenha');
+  
+  
+  useEffect(() => {
+    const getFilas = async () => {
+      const senhasSnapshop = await getDocs(senhasCollectionRef);
+      setFilas(senhasSnapshop.docs.map((doc) => ({...doc.data(), id: doc.id})));
+    };
+    getFilas();
+  }, []);
+
   return (
     <React.Fragment>
         <style>
@@ -219,15 +234,14 @@ export function Atendidas_FilaSemSenha() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.nome}</TableCell>
-              <TableCell>{row.hc}</TableCell>
-              <TableCell>
-              <ConcludeButton>CONCLUIR</ConcludeButton>
-              </TableCell>
-            </TableRow>
-          ))}
+        {filas.map((fila) => (
+          <TableRow key={fila.id}>
+            <TableCell>{fila.nome}</TableCell>
+            <TableCell>{fila.numero_hc}</TableCell>
+            {fila.id!=='0_non_blank' &&
+            <TableCell><CallButton onClick={()=> {delete_doc('atendidas_filasemsenha', fila.id)}}>CHAMAR</CallButton></TableCell>}
+          </TableRow>
+        ))}
         </TableBody>
       </Table>
     </React.Fragment>
@@ -236,16 +250,17 @@ export function Atendidas_FilaSemSenha() {
 
 // Card "Pessoas na Fila" da seção "Fila sem Senha"
 export function Fila_FilaSemSenha() {
-  const [senhas, setSenhas] = useState([]);
+  const [filas, setFilas] = useState([]);
 
-  const senhasCollectionRef = collection(db, 'sem_senhas');
+  const senhasCollectionRef = collection(db, 'fila_filasemsenha');
+  
   
   useEffect(() => {
-    const getSenhas = async () => {
+    const getFilas = async () => {
       const senhasSnapshop = await getDocs(senhasCollectionRef);
-      setSenhas(senhasSnapshop.docs.map((doc) => ({...doc.data(), id: doc.id})));
+      setFilas(senhasSnapshop.docs.map((doc) => ({...doc.data(), id: doc.id})));
     };
-    getSenhas();
+    getFilas();
   }, []);
 
   return (
@@ -272,11 +287,12 @@ export function Fila_FilaSemSenha() {
           </TableRow>
         </TableHead>
         <TableBody>
-        {senhas.map((senha) => (
-          <TableRow key={senha.id}>
-            <TableCell>{senha.nome}</TableCell>
-            <TableCell>{senha.numero_hc}</TableCell>
-            <TableCell><CallButton>CHAMAR</CallButton></TableCell>
+        {filas.map((fila) => (
+          <TableRow key={fila.id}>
+            <TableCell>{fila.nome}</TableCell>
+            <TableCell>{fila.numero_hc}</TableCell>
+            {fila.id!=='0_non_blank' &&
+            <TableCell><CallButton onClick={()=> {change_rows('fila_filasemsenha', fila.id, {nome:fila.nome, numero_hc:fila.numero_hc}, 'atendidas_filasemsenha')}}>CHAMAR</CallButton></TableCell>}
           </TableRow>
         ))}
         </TableBody>
@@ -287,6 +303,19 @@ export function Fila_FilaSemSenha() {
 
 // Card "Pessoas sendo Atendidas" da seção "Faixa Amarela"
 export function Atendidas_FaixaAmarela() {
+  const [filas, setFilas] = useState([]);
+
+  const senhasCollectionRef = collection(db, 'atendidas_faixaamarela');
+  
+  
+  useEffect(() => {
+    const getFilas = async () => {
+      const senhasSnapshop = await getDocs(senhasCollectionRef);
+      setFilas(senhasSnapshop.docs.map((doc) => ({...doc.data(), id: doc.id})));
+    };
+    getFilas();
+  }, []);
+  
   return (
     <React.Fragment>
         <style>
@@ -307,14 +336,13 @@ export function Atendidas_FaixaAmarela() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.nome}</TableCell>
-              <TableCell>
-              <ConcludeButton>CONCLUIR</ConcludeButton>
-              </TableCell>
-            </TableRow>
-          ))}
+        {filas.map((fila) => (
+          <TableRow key={fila.id}>
+            <TableCell>{fila.nome}</TableCell>
+            {fila.id!=='0_non_blank' &&
+            <TableCell><CallButton onClick={()=> {delete_doc('atendidas_faixaamarela', fila.id)}}>CHAMAR</CallButton></TableCell>}
+          </TableRow>
+        ))}
         </TableBody>
       </Table>
     </React.Fragment>
@@ -323,6 +351,19 @@ export function Atendidas_FaixaAmarela() {
 
 // Card "Pessoas na Fila" da seção "Faixa Amarela"
 export function Fila_FaixaAmarela() {
+  const [filas, setFilas] = useState([]);
+
+  const senhasCollectionRef = collection(db, 'fila_filafaixa_amarela');
+  
+  
+  useEffect(() => {
+    const getFilas = async () => {
+      const senhasSnapshop = await getDocs(senhasCollectionRef);
+      setFilas(senhasSnapshop.docs.map((doc) => ({...doc.data(), id: doc.id})));
+    };
+    getFilas();
+  }, []);
+
   return (
     <React.Fragment>
         <style>
@@ -343,14 +384,13 @@ export function Fila_FaixaAmarela() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.nome}</TableCell>
-              <TableCell>
-              <CallButton>CHAMAR</CallButton>
-              </TableCell>
-            </TableRow>
-          ))}
+        {filas.map((fila) => (
+          <TableRow key={fila.id}>
+            <TableCell>{fila.nome}</TableCell>
+            {fila.id!=='0_non_blank' &&
+            <TableCell><CallButton onClick={()=> {change_rows('fila_filafaixa_amarela', fila.id, {nome:fila.nome}, 'atendidas_faixaamarela')}}>CHAMAR</CallButton></TableCell>}
+          </TableRow>
+        ))}
         </TableBody>
       </Table>
     </React.Fragment>
@@ -359,6 +399,19 @@ export function Fila_FaixaAmarela() {
 
 // Card "Pessoas sendo Atendidas" da seção "Sala 23"
 export function Atendidas_Sala23() {
+  const [filas, setFilas] = useState([]);
+
+  const senhasCollectionRef = collection(db, 'atendidas_sala23');
+  
+  
+  useEffect(() => {
+    const getFilas = async () => {
+      const senhasSnapshop = await getDocs(senhasCollectionRef);
+      setFilas(senhasSnapshop.docs.map((doc) => ({...doc.data(), id: doc.id})));
+    };
+    getFilas();
+  }, []);
+
   return (
     <React.Fragment>
         <style>
@@ -379,14 +432,13 @@ export function Atendidas_Sala23() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.nome}</TableCell>
-              <TableCell>
-              <ConcludeButton>CONCLUIR</ConcludeButton>
-              </TableCell>
-            </TableRow>
-          ))}
+        {filas.map((fila) => (
+          <TableRow key={fila.id}>
+            <TableCell>{fila.nome}</TableCell>
+            {fila.id!=='0_non_blank' &&
+            <TableCell><CallButton onClick={()=> {delete_doc('atendidas_sala23', fila.id)}}>CHAMAR</CallButton></TableCell>}
+          </TableRow>
+        ))}
         </TableBody>
       </Table>
     </React.Fragment>
@@ -395,6 +447,19 @@ export function Atendidas_Sala23() {
 
 // Card "Pessoas na Fila" da seção "Sala 23"
 export function Fila_Sala23() {
+  const [filas, setFilas] = useState([]);
+
+  const senhasCollectionRef = collection(db, 'fila_sala23');
+  
+  
+  useEffect(() => {
+    const getFilas = async () => {
+      const senhasSnapshop = await getDocs(senhasCollectionRef);
+      setFilas(senhasSnapshop.docs.map((doc) => ({...doc.data(), id: doc.id})));
+    };
+    getFilas();
+  }, []);
+
   return (
     <React.Fragment>
         <style>
@@ -415,14 +480,13 @@ export function Fila_Sala23() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.nome}</TableCell>
-              <TableCell>
-              <CallButton>CHAMAR</CallButton>
-              </TableCell>
-            </TableRow>
-          ))}
+        {filas.map((fila) => (
+          <TableRow key={fila.id}>
+            <TableCell>{fila.nome}</TableCell>
+            {fila.id!=='0_non_blank' &&
+            <TableCell><CallButton onClick={()=> {change_rows('fila_sala23', fila.id, {nome:fila.nome}, 'atendidas_sala23')}}>CHAMAR</CallButton></TableCell>}
+          </TableRow>
+        ))}
         </TableBody>
       </Table>
     </React.Fragment>

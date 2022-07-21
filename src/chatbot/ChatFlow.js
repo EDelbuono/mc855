@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {addSenhas, tamanho_atual} from './../App.js'
+import {addSenhas, addToFila, tamanho_atual} from './../App.js'
 
 export class Review extends Component {
     constructor(props) {
@@ -15,26 +15,34 @@ export class Review extends Component {
   
     componentWillMount() {
       const { steps } = this.props;
-      const { nome, numero_hc_1, numero_hc_2, finish } = steps;
+      const { nome, numero_hc_1, numero_hc_2, finish_consulta, review_consulta, review_faixa_amarela, review_sala23, review_semsenha } = steps;
   
-      this.setState({ nome, numero_hc_1, numero_hc_2, finish });
+      this.setState({ nome, numero_hc_1, numero_hc_2, finish_consulta, review_consulta, review_faixa_amarela, review_sala23, review_semsenha });
     }
   
     render() {
-      const { nome, numero_hc_1, numero_hc_2, finish } = this.state;
-      if(typeof finish!== "undefined")
-        return <div>Tenha um bom dia!</div>;
-      if(typeof nome!== "undefined" && typeof numero_hc_1 !== "undefined"){
-        addSenhas(nome.value, numero_hc_1.value);
-        return <div>Nome: {nome.value}, HC: {numero_hc_1.value}</div>;
-      }
-      else if(typeof nome!== "undefined" && typeof numero_hc_2 !== "undefined"){
-        addSenhas(nome.value, numero_hc_2.value);
-        return <div>Nome: {nome.value}, HC: {numero_hc_2.value}</div>;
-      }
-      else
-        return <div>Opções:</div>;
-    }
+        const { nome, numero_hc_1, numero_hc_2, finish_consulta, review_consulta, review_faixa_amarela, review_sala23, review_semsenha } = this.state;
+        if(typeof finish_consulta!== "undefined")
+            return <div>Tenha um bom dia!</div>;
+        if (typeof review_faixa_amarela!== "undefined" ){
+            addToFila('fila_filafaixa_amarela', nome.value, '');
+            return <div>Nome: {nome.value}</div>;
+        }
+        if (typeof review_sala23!== "undefined" ){
+            addToFila('fila_sala23', nome.value, '');
+            return <div>Nome: {nome.value}</div>;
+        }
+        if(typeof review_semsenha!== "undefined"){
+            addToFila('fila_filasemsenha', nome.value, numero_hc_1.value);
+            return <div>Nome: {nome.value}, HC: {numero_hc_1.value}</div>;
+        }
+        if(typeof review_consulta!== "undefined"){
+            addSenhas(nome.value, numero_hc_2.value);
+            return <div>Nome: {nome.value}, HC: {numero_hc_2.value}</div>;
+        }
+        else
+            return <div>Opções:</div>;
+        }
   }
   
   Review.propTypes = {
@@ -44,6 +52,7 @@ export class Review extends Component {
   Review.defaultProps = {
     steps: undefined,
   };
+  
 
 export const steps=[
     {
@@ -106,7 +115,7 @@ export const steps=[
     {
         id: '6.2',
         message: 'Você receberá uma pasta com seu nome e um número para nos trazer.',
-        trigger: '7.2',
+        trigger: 'review_faixa_amarela',
     },
     {
         id: '7.1.1',
@@ -116,6 +125,12 @@ export const steps=[
     {
         id: '7.1.2',
         message: 'Nesse caso, por favor se dirija à sala 23 a sua direita e aguarde, que em breve te atenderemos.',
+        trigger: 'review_sala23',
+    },
+    {
+        id: 'review_sala23',
+        component: <Review />,
+        asMessage: true,
         trigger: '8.1.2',
     },
     {
@@ -127,6 +142,12 @@ export const steps=[
         id: '7.1.4',
         message: 'Sem problemas, vamos de novo! Você já é cliente do HC?',
         trigger: '5',
+    },
+    {
+        id: 'review_faixa_amarela',
+        component: <Review />,
+        asMessage: true,
+        trigger: '7.2',
     },
     {
         id: '7.2',
@@ -270,6 +291,12 @@ export const steps=[
     {
         id: '9.1.3',
         message: 'Aguarde, em breve te atenderemos.',
+        trigger: 'review_semsenha',
+    },
+    {
+        id: 'review_semsenha',
+        component: <Review />,
+        asMessage: true,
         trigger: '10.1.3',
     },
     {
@@ -472,7 +499,7 @@ export const steps=[
     {
         id: 'numero_hc_2', // 12.1.1.1
         user: true,
-        trigger: 'review',
+        trigger: 'review_consulta',
         validator: value => {
             let pattern = /^[0-9 ]+$/;
             if(pattern.test(value)){
@@ -490,13 +517,13 @@ export const steps=[
         ],
     },
     {
-        id: 'review',
+        id: 'review_consulta',
         component: <Review />,
         asMessage: true,
-        trigger: 'finish',
+        trigger: 'finish_consulta',
     },
     {
-        id: 'finish',
+        id: 'finish_consulta',
         component: <Review />,
         asMessage: true,
         trigger: '13.1.1.1',
